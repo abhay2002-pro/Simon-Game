@@ -1,15 +1,23 @@
-let gamePattern = [];
-let buttonColours = ["red","blue","green","yellow"];
-
-function nextsequence(){
-    var randomNumber = Math.floor(Math.random() * 4);
-    return randomNumber;
-}
 
 // console.log(nextsequence());
+window.addEventListener('DOMContentLoaded', (event) => {
+    var buttonColours = ["red","blue","green","yellow"];
 
-let randomChosenColour = buttonColours[nextsequence()];
+    var gamePattern = [];
 
-gamePattern.push(randomChosenColour);
+    function nextSequence(){
+        var randomNumber = Math.floor(Math.random() * 4);
+        var randomChosenColour = buttonColours[randomNumber];
 
-$("#" + randomChosenColour).fadeOut(100).fadeIn(100);
+        gamePattern.push(randomChosenColour);
+
+        $("#" + randomChosenColour).fadeOut(100).fadeIn(100);
+
+        var audio = new Audio("sounds/" + randomChosenColour + ".mp3");
+        audio.play();
+        console.log(randomChosenColour);
+    }
+    $(document).keypress(()=>{
+        nextSequence();
+    });
+}); 
